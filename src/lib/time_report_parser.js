@@ -1,7 +1,13 @@
 const csv = require('csvtojson')
 const fs = require('fs')
+const moment = require('moment')
 
-const parseTimeReport = (csvFilePath, cb) => {
+const parseTimeReport = (csvFilePath) => {
+  /**
+   * @description parseTimeReport - parses csv time report sent from the frontend
+   * @param {string} csvFilePath - path to temp storage for uploaded csv
+   * @return Promise containing reportID, array_of_processTimeEntryData
+   */
   return csv({
     checkType: true
   })
@@ -18,10 +24,11 @@ const parseTimeReport = (csvFilePath, cb) => {
       row['hoursWorked'] = entry['hours worked'],
       row['jobGroup'] = entry['job group'],
       row['employeeId'] = entry['employee id'],
-      row['date'] = entry['date']
+      row['dateWorked'] = new Date(moment(entry['date'], 'DD-MM-YYYY'))
       return row
     })
     return { reportID, processedTimeReport }
   })
 }
+
 module.exports = parseTimeReport
