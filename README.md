@@ -1,3 +1,43 @@
+Project Dependencies:
+- Node v 10.x+ LTS
+- NPM 6.5.0
+- Postgres - 6.2.0
+- React 16.0.0
+- Sequelize and sequelize CLI
+
+
+# Setting Up
+## A. Structure/Project Setup
+- Unbundle the repo and cd into the folder:
+```
+
+```
+
+- Rename `env.sample` as `.env` and set the contained values appropriate.
+
+> Note: `PORT` in `.env` refers to the port on which the server is running. If you choose to run on a port other than `5000`, remember to change the `proxy` field in `client/package.json` to reflect this new port value.
+```
+"proxy": "http://localhost:{NEW_PORT_VALUE_AS_SPECIFIED_IN_ENV_VAR}/"
+```
+The proxy field allows the client to send API requests to the API server since the API server is running on `http://localhost:5000` for example.
+
+
+## B. DB Setup
+Ensure to have postgres [setup and running](https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/) on your machine Then follow the steps below:
+- Create database locally using `psql` shell or directly through your terminal
+- export `DATABASE_URL` in your terminal in the form of
+```
+export DATABASE_URL=postgres://[user[:password]@][host][:port][/dbname]
+```
+- run migrations with the command:
+
+
+
+## C. App Setup
+
+
+
+========
 # Wave Software Development Challenge
 
 Applicants for the [Software
