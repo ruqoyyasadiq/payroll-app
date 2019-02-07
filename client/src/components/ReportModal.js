@@ -15,7 +15,8 @@ export default class ReportModal extends Component {
   static propTypes = {
     pageLoading: func,
     showModal: bool,
-    toggleModalView: func
+    toggleModalView: func,
+    fetchReportData: func
   }
 
   static defaultProps = {
@@ -37,7 +38,7 @@ export default class ReportModal extends Component {
   }
 
   render() {
-    const { pageLoading, showModal } = this.props
+    const { fetchReportData, pageLoading, showModal } = this.props
     const { errorMessage } = this.state
     return (
       <>
@@ -48,6 +49,7 @@ export default class ReportModal extends Component {
           <Modal.Body>
             {errorMessage && <Alert variant='danger'>{errorMessage}</Alert>}
             <FileUpload
+              fetchReportData={fetchReportData}
               pageLoading={pageLoading}
               toggleModalView={this.props.toggleModalView}
               processErrorMessage={this.processErrorMessage}

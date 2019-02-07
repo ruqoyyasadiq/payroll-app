@@ -1,0 +1,12 @@
+.no-record {
+	padding:20%;
+	font-size:0.9em;
+	text-align:center;
+  position: relative;
+}
+
+.no-record svg {
+	height:100px;
+	display:inline-block;
+	margin-bottom:10px;
+}

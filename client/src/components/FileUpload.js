@@ -16,6 +16,7 @@ export default class FileUploadForm extends Component {
   }
 
   static propTypes = {
+    fetchReportData: func,
     pageLoading: func.isRequired,
     processErrorMessage: func.isRequired,
     toggleModalView: func.isRequired
@@ -26,10 +27,6 @@ export default class FileUploadForm extends Component {
       selectedFile: event.target.files[0],
       loaded: 0
     })
-  }
-
-  resetUIState = () => {
-    
   }
 
   handleFileUpload = () => {
@@ -48,14 +45,15 @@ export default class FileUploadForm extends Component {
         })
       },
     }).then(res => {
-      this.props.toggleModalView(false) // close modal
-      this.props.pageLoading(false) // disable loader since data has arrived.
       this.setState({
         loaded: 0,
         processingUpload: false,
         uploadInProgress: false,
         processedData: res.data.result
       })
+      this.props.toggleModalView(false) // close modal
+      this.props.pageLoading(false) // disable loader since data has arrived.
+      this.props.fetchReportData() // refresh report table
     }).catch(err => {
       this.props.pageLoading(false)
       const error = err.response
