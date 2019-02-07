@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 import Navbar from 'react-bootstrap/Navbar'
 import Loader from 'react-loader-spinner'
 import { NoRecord, ReportModal, ReportTable } from '../components'
@@ -59,16 +60,18 @@ class App extends Component {
         <Navbar bg='light' variant='light' style={{zIndex: 1, borderBottom: 'solid 1px #ddd' }}>
           <Navbar.Brand href='#home'>Payroll Report</Navbar.Brand>
         </Navbar>
-        <Button variant='primary' id='new-upload-btn' onClick={this.handleShowModal}>+</Button>
-        {isPageLoading && <Loader type='ThreeDots' color='#266AD1' height={80} width={80} />}
-        {reportsLoaded && reportsLength === 0 && <NoRecord addNewReport={this.handleShowModal} />}
-        <ReportModal
-          pageLoading={this.showLoader}
-          fetchReportData={this.fetchReportData}
-          showModal={showModal}
-          toggleModalView={this.toggleModalView}
-        />
-        {(flattenedReports.length > 0) && <ReportTable reports={flattenedReports} />}
+        <Container>
+          <Button variant='primary' id='new-upload-btn' onClick={this.handleShowModal}>+</Button>
+          {isPageLoading && <Loader type='ThreeDots' color='#266AD1' height={80} width={80} />}
+          {reportsLoaded && reportsLength === 0 && <NoRecord addNewReport={this.handleShowModal} />}
+          <ReportModal
+            pageLoading={this.showLoader}
+            fetchReportData={this.fetchReportData}
+            showModal={showModal}
+            toggleModalView={this.toggleModalView}
+          />
+          {(flattenedReports.length > 0) && <ReportTable reports={flattenedReports} />}
+        </Container>
       </div>
     )
   }
