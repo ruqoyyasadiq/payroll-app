@@ -1,6 +1,7 @@
 const Report = require('../models').Report
 const models = require('../models')
 const parseTimeReport = require('../lib/time_report_parser')
+const timeReportProcessor = require('../lib/time_report_processor')
 
 class reportController {
   /**
@@ -21,27 +22,21 @@ class reportController {
         } else {
           return Report
             .bulkCreate(processedTimeReport)
-            .then(() => {
-              return Report.findAll({
-                where: { reportID },
-                group: ['employeeId']
-              }).then(response => {
-                const result = response.map(data => data.dataValues)
-                res.status(200).json({ result })
-              })
-            })
+            .then(() => res.status(200).json({ message: 'Successfully uploaded Time Report.' }))
             .catch(error => res.status(500).json({ error }))
         }
       })
     })
   }
 
-  static fetchTimeReport(req, res) {
-    // do something
-  }
-
   static fetchAllTimeReports(req, res) {
-    // do something
+    Report.findAll({
+      attributes: ['employeeId', 'hoursWorked', 'jobGroup', 'dateWorked']
+    }).then(data => {
+      const report = data.map(resp => resp.dataValues)
+      const result = timeReportProcessor(report)
+      res.status(200).json({ result })
+    })
   }
 }
 

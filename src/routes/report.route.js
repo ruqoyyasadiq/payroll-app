@@ -11,7 +11,6 @@ const upload = multer({ dest:'./uploads/' })
 const reportRouter = express.Router()
 
 reportRouter.post('/new', upload.single('uploadCsv'),  reportController.uploadTimeReport)
-reportRouter.get('/:id', reportController.fetchTimeReport)
 reportRouter.get('/', reportController.fetchAllTimeReports)
 
 module.exports = reportRouter
