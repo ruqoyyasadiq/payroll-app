@@ -3,14 +3,14 @@ Project Dependencies:
 - NPM 6.5.0
 - Postgres - 6.2.0
 - React 16.0.0
-- Sequelize and sequelize CLI
+- Sequelize and sequelize CLI (installed globally)
 
 
 # Setting Up
 ## A. Structure/Project Setup
 - Unbundle the repo and cd into the folder:
 ```
-
+git bundle verify {bundle_name}.bundle && git clone {bundle_name}.bundle && cd $_
 ```
 
 - Rename `env.sample` as `.env` and set the contained values appropriate.
@@ -22,22 +22,58 @@ Project Dependencies:
 The proxy field allows the client to send API requests to the API server since the API server is running on `http://localhost:5000` for example.
 
 
-## B. DB Setup
+## B. DB & App Setup
 Ensure to have postgres [setup and running](https://www.moncefbelyamani.com/how-to-install-postgresql-on-a-mac-with-homebrew-and-lunchy/) on your machine Then follow the steps below:
 - Create database locally using `psql` shell or directly through your terminal
-- export `DATABASE_URL` in your terminal in the form of
+
+- Export `DATABASE_URL` in your terminal in the form of
 ```
 export DATABASE_URL=postgres://[user[:password]@][host][:port][/dbname]
 ```
-- run migrations with the command:
+
+- Run migrations with the command:
+```
+npm run db:migrate
+```
+
+- Start application with:
+```
+npm run dev
+```
+The above command uses [`concurrently`](https://www.npmjs.com/package/concurrently) to start both the server and client side _concurrently_
+
+- Access the client via:
+```
+http://localhost:3000/
+```
+Requests to the server are proxied through `http://localhost:5000/` as specified in the `client/package.json`
+
+
+# To uplaod a new report:
+- If it is first ever report:
+    - click the button below the No Record icon
+    - or click the big blue circular button with the `+` icon in it to get started
+- To upload additional reports to what exists before, simply click the big blue circular button with the `+` icon in it to launch report upload modal
+
+
+# Endpoints List
+| Endpoint Description  | Routes                    | Method  |
+|-----------------------|-----------------------------|---------|
+| Bulk creates report entries for a particular  `reportID`  | /v1/reports/new              |   POST   |
+| Fetch all Reports     | /v1/reports  |   GET   |
+
+
+# TODOs:
+1. Elaborate more on database modelling - Create Company and Employee Tables and map all three tables (Company, Report and Employee) appropriately. This is with intention that the application would scale to serve more than one client which MVP is built for.
+2. Increase test coverage (FE especially)
+3. Refactor Front-end to use state management library (e.g. redux)
+
+# Author
+[Rukayat Sadiq](https://github.com/ruqoyyasadiq)
 
 
 
-## C. App Setup
-
-
-
-========
+==========================================================================
 # Wave Software Development Challenge
 
 Applicants for the [Software
