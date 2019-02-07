@@ -5,7 +5,11 @@ const numDaysBetween = function(d1, d2) {
   return diff / (1000 * 60 * 60 * 24);
 };
 
-const timeReportProcessor = data => {
+const timeReportProcessor = data => {/**
+  * @description timeReportProcessor - processes all time report entries from Reports table by reduction method
+  * @param {string} data - data from the Reports table
+  * @return Object of objects hash with key being the employeeID and each value being an object of pay period and amount paid
+  */
   return data.reduce((acc, val) => {
     let dateKey = ''
     const singleDateArray = val.dateWorked.split('-')
@@ -22,9 +26,9 @@ const timeReportProcessor = data => {
 
     if(!acc[val.employeeId]) {
       acc[val.employeeId] = [{
-          datePeriod: dateKey,
-          amountPaid: 0,
-          employeeId: val.employeeId
+        datePeriod: dateKey,
+        amountPaid: 0,
+        employeeId: val.employeeId
       }]
     }
 
