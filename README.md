@@ -55,6 +55,21 @@ Requests to the server are proxied through `http://localhost:5000/` as specified
     - or click the big blue circular button with the `+` icon in it to get started
 - To upload additional reports to what exists before, simply click the big blue circular button with the `+` icon in it to launch report upload modal
 
+# Running Test
+- To  run the application test, begin by creating a test DB with:
+```
+createdb {test_db_name}
+```
+where `test_db_name` is `TEST_DATABASE_URL` as specified in `.env.sample` file
+- Run test via npm scripts with command
+```
+npm test
+```
+or 
+```
+npm t
+```
+
 
 # Endpoints List
 | Endpoint Description  | Routes                    | Method  |
@@ -65,8 +80,10 @@ Requests to the server are proxied through `http://localhost:5000/` as specified
 
 # TODOs:
 1. Elaborate more on database modelling - Create Company and Employee Tables and map all three tables (Company, Report and Employee) appropriately. This is with intention that the application would scale to serve more than one client which MVP is built for.
-2. Increase test coverage (FE especially)
-3. Refactor Front-end to use state management library (e.g. redux)
+2. Increase test coverage (FE especially).
+3. Paginate reports table on the front end
+4. Ad sorting to table.
+5. Refactor Front-end to use state management library (e.g. redux)
 
 # Author
 [Rukayat Sadiq](https://github.com/ruqoyyasadiq)
