@@ -16,7 +16,7 @@ export default class FileUploadForm extends Component {
   }
 
   static propTypes = {
-    fetchReportData: func,
+    fetchReportData: func.isRequired,
     pageLoading: func.isRequired,
     processErrorMessage: func.isRequired,
     toggleModalView: func.isRequired

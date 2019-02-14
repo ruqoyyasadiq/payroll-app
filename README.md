@@ -8,7 +8,7 @@ Project Dependencies:
 - Sequelize and sequelize CLI (installed globally)
 
 # Implementation Discussion
-- The problem set was built from from an API-first approach. Two endpoints - `for time report uploads` and `fetching all report records` - exists to satisfy the requirements of the assessment. 
+- The problem set was built from from an API-first approach. Two endpoints - `for time report uploads` and `fetching all report records` - exists to satisfy the requirements of the assessment.
 
 On the back end: the approach was to design a system that can scale over time, expecting my companies to use the system. Possibly running a *multitenant* application. To this end, the main tables were identified (although one was implemented for the sake of MVP requirements.) The 3 tables are:
 - Reports
@@ -20,6 +20,8 @@ In future iterations, it would be expected that multiple companies use the appli
 Manipulation of data fetched from the Reports table was done using custom JS implementation as seen in `src/lib/time_report_processor.js`. This approach of fetching all data and manipulating via custom library was chosen over using SQL queries to manipulation records because of scalability and unforeseen complicated issues. Because of the nature of the report to be displayed (grouped by employee per pay period), if going the SQL query approach to manipulate records, multiple queries would be made at any point in time to fetch report data. This would lead to longer execution and load time. Hence the approach of fetching all data and processing just before sent the data to the required client.
 
 - The FE was built with React. Because only one view is needed, no state management library is use. In future iterations and as the project size increase, adopting a state management library approach would be considered.
+
+The core of the server code lives in the `src` directory or the project folder whilst the front-end code lives in `client` directory
 
 # Setting Up
 ## A. Structure/Project Setup
@@ -77,12 +79,17 @@ createdb {test_db_name}
 ```
 where `test_db_name` is the db name specified in the database conenction string `TEST_DATABASE_URL` as specified in `.env.sample` file
 - Run test via npm scripts with command
+1. For server test, in the root directory, run:
 ```
 npm test
 ```
-or 
+2. For Client (snapshot) tests, , in the root directory, run:
 ```
-npm t
+npm run test:client
+```
+OR from the client directory, run:
+```
+npm test
 ```
 
 

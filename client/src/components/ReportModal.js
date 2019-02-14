@@ -14,9 +14,9 @@ export default class ReportModal extends Component {
 
   static propTypes = {
     pageLoading: func,
-    showModal: bool,
-    toggleModalView: func,
-    fetchReportData: func
+    showModal: bool.isRequired,
+    toggleModalView: func.isRequired,
+    fetchReportData: func.isRequired
   }
 
   static defaultProps = {

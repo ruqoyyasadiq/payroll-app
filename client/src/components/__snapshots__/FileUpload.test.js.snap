@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileUpload renders 1`] = `
+<div>
+  <p>
+    Select a Time Report to upload.
+  </p>
+  <form
+    className=""
+  >
+    <input
+      className="mr-sm-2 form-control-file"
+      name=""
+      onChange={[Function]}
+      placeholder="Select a Time Report to upload"
+      type="file"
+    />
+    <button
+      className="btn btn-outline-primary"
+      disabled={true}
+      id="upload-btn"
+      onClick={[Function]}
+      type="button"
+    >
+       Upload 
+    </button>
+  </form>
+</div>
+`;

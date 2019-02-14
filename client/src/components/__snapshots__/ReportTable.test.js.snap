@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportTable renders 1`] = `
+<table
+  className="table table-striped table-bordered table-hover"
+>
+  <thead>
+    <tr>
+      <th>
+        Employee ID
+      </th>
+      <th>
+        Pay Period
+      </th>
+      <th>
+        Amount paid
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;
