@@ -25,6 +25,7 @@ export default class ReportModal extends Component {
 
   handleClose = () => {
     this.props.toggleModalView(false)
+    this.processErrorMessage('')
   }
 
   handleShow = () => {

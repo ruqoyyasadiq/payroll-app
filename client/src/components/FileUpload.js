@@ -89,7 +89,6 @@ export default class FileUploadForm extends Component {
             now={Math.round(loaded, 2) }
           />
         )}
-        {}
       </div>
     )
   }
