@@ -1,3 +1,5 @@
+# Payroll System
+
 Project Dependencies:
 - Node v 10.x+ LTS
 - NPM 6.5.0
@@ -11,8 +13,9 @@ Project Dependencies:
 On the back end: the approach was to design a system that can scale over time, expecting my companies to use the system. Possibly running a *multitenant* application. To this end, the main tables were identified (although one was implemented for the sake of MVP requirements.) The 3 tables are:
 - Reports
 - Employees
-- Company 
-In future iterations, it would be expect that multiple companies use the application, so a `Company` table exists to map reports and Employees` to the right data.
+- Company
+
+In future iterations, it would be expected that multiple companies use the application, so a `Company` table exists to map `Reports` and `Employees` to the right data.
 
 Manipulation of data fetched from the Reports table was done using custom JS implementation as seen in `src/lib/time_report_processor.js`. This approach of fetching all data and manipulating via custom library was chosen over using SQL queries to manipulation records because of scalability and unforeseen complicated issues. Because of the nature of the report to be displayed (grouped by employee per pay period), if going the SQL query approach to manipulate records, multiple queries would be made at any point in time to fetch report data. This would lead to longer execution and load time. Hence the approach of fetching all data and processing just before sent the data to the required client.
 
@@ -72,7 +75,7 @@ Requests to the server are proxied through `http://localhost:5000/` as specified
 ```
 createdb {test_db_name}
 ```
-where `test_db_name` is `TEST_DATABASE_URL` as specified in `.env.sample` file
+where `test_db_name` is the db name specified in the database conenction string `TEST_DATABASE_URL` as specified in `.env.sample` file
 - Run test via npm scripts with command
 ```
 npm test
@@ -94,7 +97,7 @@ npm t
 1. Elaborate more on database modelling - Create Company and Employee Tables and map all three tables (Company, Report and Employee) appropriately. This is with intention that the application would scale to serve more than one client which MVP is built for.
 2. Increase test coverage (FE especially).
 3. Paginate reports table on the front end
-4. Ad sorting to table.
+4. Add sorting to table.
 5. Refactor Front-end to use state management library (e.g. redux)
 
 # Author

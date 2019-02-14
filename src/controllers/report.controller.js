@@ -36,7 +36,7 @@ class reportController {
       const report = data.map(resp => resp.dataValues)
       const result = timeReportProcessor(report)
       res.status(200).json({ result })
-    })
+    }).catch(error => res.status(500).json({ error }))
   }
 }
 
