@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+#new-upload-btn {
+  border-radius: 50%;
+  height: 70px;
+  width: 70px;
+  float: right;
+  margin-right: 2em;
+  position: relative;
+  top: -35px;
+  z-index: 20;
+}

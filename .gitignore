@@ -8,3 +8,6 @@
 
 # Dependencies
 node_modules/
+
+# Auto_generated csv uploads from FE
+uploads/

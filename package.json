@@ -4,7 +4,12 @@
   "description": "A minimalistic payroll app to imititate generating payroll for a given Company X.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently --kill-others-on-fail \"npm run watch:server\" \"npm run start:client\"",
+    "watch:server": "nodemon src/server.js --watch src",
+    "start:client": "cd client && npm start",
+    "start:server": "node src/server.js",
+    "db:migrate": "sequelize db:migrate",
+    "test": "NODE_ENV=test mocha spec/**"
   },
   "repository": {
     "type": "git",
@@ -23,16 +28,27 @@
   "homepage": "https://github.com/ruqoyyasadiq/payroll-app#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
     "cors": "^2.8.4",
+    "csvtojson": "^2.0.8",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
+    "moment": "^2.24.0",
     "morgan": "^1.9.0",
+    "multer": "^1.4.1",
     "pg": "^7.4.3",
-    "sequelize": "^4.38.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0",
     "sequelize-test-helpers": "^1.0.4",
+    "sinon": "^6.1.5",
+    "sinon-chai": "^3.2.0",
+    "supertest": "^3.1.0"
   },
   "devDependencies": {
-    "eslint": "^5.3.0",
+    "concurrently": "^4.1.0",
+    "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.0.0",
     "nodemon": "^1.18.3"
   }
